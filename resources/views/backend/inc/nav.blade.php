@@ -19,22 +19,24 @@
             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
                 <img class="rounded-circle me-lg-2" src="{{ asset('backend') }}/img/user.jpg" alt=""
                     style="width: 40px; height: 40px;">
-                <span class="d-none d-lg-inline-flex">John Doe</span>
+                <span class="d-none d-lg-inline-flex">{{ auth()->user()->name }}</span>
             </a>
             <div class="dropdown-menu dropdown-menu-end bg-secondary border-0 rounded-0 rounded-bottom m-0">
                 <a href="#" class="dropdown-item">My Profile</a>
                 <a href="#" class="dropdown-item">Settings</a>
-                <a href="{{ route('logout') }}" id="logout-link" class="dropdown-item" onclick="logout()">Log Out</a>
+                <a href="#" id="logout-link" class="dropdown-item" onclick="logout(event)">Log Out</a>
 
-                
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                     @csrf
                 </form>
+
                 <script>
-                    function logout() {
+                    function logout(event) {
+                        event.preventDefault();
                         document.getElementById('logout-form').submit();
                     }
                 </script>
+
 
             </div>
         </div>
