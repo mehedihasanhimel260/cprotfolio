@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -25,6 +26,7 @@ Auth::routes();
 Route::middleware(['auth'])->group(function () {
     Route::middleware(['auth', 'user-access:admin'])->group(function () {
         Route::get('/admin/home', [HomeController::class, 'adminHome'])->name('admin.home');
+        Route::resource('/admin/category', CategoryController::class);
     });
 
     Route::middleware(['auth', 'user-access:user'])->group(function () {
