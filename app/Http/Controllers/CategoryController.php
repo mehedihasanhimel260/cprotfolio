@@ -76,7 +76,7 @@ class CategoryController extends Controller
             if (File::exists($category->image)) {
                 File::delete($category->image);
             }
-            $destinationPath = 'upload/';
+            $destinationPath = public_path('upload/');
             $newImageName = date('YmdHis') . '.' . $image->getClientOriginalExtension();
             $image->move($destinationPath, $newImageName);
 
