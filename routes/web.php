@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\SubCategoryController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -15,9 +16,7 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::get('/admin', function () {
-    return view('backend.layout');
-});
+
 Route::get('/', function () {
     return view('frontend.layout');
 });
@@ -27,6 +26,7 @@ Route::middleware(['auth'])->group(function () {
     Route::middleware(['auth', 'user-access:admin'])->group(function () {
         Route::get('/admin/home', [HomeController::class, 'adminHome'])->name('admin.home');
         Route::resource('/admin/category', CategoryController::class);
+        Route::resource('/admin/sub-category', SubCategoryController::class);
     });
 
     Route::middleware(['auth', 'user-access:user'])->group(function () {
