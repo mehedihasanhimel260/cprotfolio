@@ -29,9 +29,11 @@
                     <a href="{{ route('sub-category.index') }}" class="dropdown-item ">Sub Category</a>
                 </div>
             </div>
-            <a href="{{ route('post.index') }}" class="nav-item nav-link "><i class="fa fa-chart-bar me-2"></i>Posts</a>
+            <a href="{{ route('post.index') }}" class="nav-item nav-link {{ Request::routeIs('post.index') ? 'active' : '' }}"><i class="fa fa-chart-bar me-2"></i>Posts</a>
+            <a href="{{ route('page.index') }}" class="nav-item nav-link {{ Request::routeIs('page.index') ? 'active' : '' }}"><i class="fa fa-chart-bar me-2"></i>Page</a>
+            <a href="{{ route('section.index') }}" class="nav-item nav-link {{ Request::routeIs('section.index') ? 'active' : '' }}"><i class="fa fa-chart-bar me-2"></i>Section</a>
             <div class="nav-item dropdown">
-                <a href="#" class="nav-link dropdown-toggle " data-bs-toggle="dropdown"><i
+                <a href="{{ route('page.index') }}" class="nav-link dropdown-toggle " data-bs-toggle="dropdown"><i
                         class="far fa-file-alt me-2"></i>Page</a>
                 <div class="dropdown-menu bg-transparent border-0">
                     <a href="blank.html" class="dropdown-item ">Blank Page</a>

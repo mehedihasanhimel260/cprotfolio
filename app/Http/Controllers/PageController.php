@@ -2,19 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
+use App\Models\Page;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-use Illuminate\Support\Facades\File;
-class CategoryController extends Controller
+class PageController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $categories = Category::get();
-        return view('backend.category.index', compact('categories'));
+        $pages = Page::get();
+        return view('backend.page.index', compact('pages'));
     }
 
     /**
@@ -30,7 +29,7 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        $input = new Category();
+        $input = new Page();
         $input->name = $request->name;
         $input->slug = Str::slug($request->name);
 
@@ -48,7 +47,7 @@ class CategoryController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Category $category)
+    public function show(Page $page)
     {
         //
     }
@@ -58,8 +57,8 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        $category = Category::find($id);
-        return view('backend.category.edit', compact('category'));
+        $page = Page::find($id);
+        return view('backend.page.edit', compact('page'));
     }
 
     /**
@@ -67,7 +66,7 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $category = Category::find($id);
+        $category = Page::find($id);
         $category->name = $request->name;
         $category->slug = Str::slug($request->name);
         if ($image = $request->file('image')) {
@@ -92,13 +91,9 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        $category = Category::find($id);
-
-        if (File::exists($category->image)) {
-            File::delete($category->image);
-        }
-
-        $category->delete();
+        $page = Page::find($id);
+        @unlink($page->image);
+        $page->delete();
 
         return redirect()->back();
     }

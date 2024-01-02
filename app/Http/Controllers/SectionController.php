@@ -2,24 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
-use App\Models\Post;
-use App\Models\SubCategory;
+use App\Models\Page;
+use App\Models\Section;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
-
-class PostController extends Controller
+class SectionController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $categories = Category::get();
-        $subCategories = SubCategory::get();
-        $posts = Post::with('category', 'subCategory')->get();
-
-        return view('backend.post.index', compact('categories', 'posts', 'subCategories'));
+        $pages = Page::get();
+        return view('backend.section.index', compact('pages'));
     }
 
     /**
@@ -35,11 +29,10 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        $input = new Post();
-        $input->category_id = $request->category_id;
-        $input->sub_category_id = $request->sub_category_id;
+        $input = new Section();
+        $input->page_id = $request->page_id;
         $input->title = $request->title;
-        $input->slug = Str::slug($request->title);
+        $input->sub_title = $request->sub_title;
         $input->description = $request->description;
 
         if ($image = $request->file('image')) {
@@ -48,8 +41,14 @@ class PostController extends Controller
             $image->move($destinationPath, $categoryImage);
             $input->image = $destinationPath . $categoryImage;
         }
-        $input->image_size = $request->image_size;
-        $input->image_position = $request->image_position;
+
+        if ($image = $request->file('bg_image')) {
+            $destinationPath = 'upload/';
+            $categoryImage = date('YmdHis') . '.' . $image->getClientOriginalExtension();
+            $image->move($destinationPath, $categoryImage);
+            $input->bg_image = $destinationPath . $categoryImage;
+        }
+
         $input->save();
         return redirect()->back();
     }
@@ -57,7 +56,7 @@ class PostController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Post $post)
+    public function show(Section $section)
     {
         //
     }
@@ -67,10 +66,9 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        $posts = Post::find($id);
-        $categories = Category::get();
-        $subCategories = SubCategory::get();
-        return view('backend.post.edit', compact('posts', 'categories', 'subCategories'));
+        $pages = Page::get();
+        $section = Section::find($id);
+        return view('backend.section.index', compact('section', 'pages'));
     }
 
     /**
@@ -78,11 +76,10 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $input = Post::find($id);
-        $input->category_id = $request->category_id;
-        $input->sub_category_id = $request->sub_category_id;
+        $input = Section::find($id);
+        $input->page_id = $request->page_id;
         $input->title = $request->title;
-        $input->slug = Str::slug($request->title);
+        $input->sub_title = $request->sub_title;
         $input->description = $request->description;
 
         if ($image = $request->file('image')) {
@@ -92,9 +89,15 @@ class PostController extends Controller
             $image->move($destinationPath, $categoryImage);
             $input->image = $destinationPath . $categoryImage;
         }
-        $input->image = $input->image;
-        $input->image_size = $request->image_size;
-        $input->image_position = $request->image_position;
+
+        if ($image = $request->file('bg_image')) {
+            @unlink($input->bg_image);
+            $destinationPath = 'upload/';
+            $categoryImage = date('YmdHis') . '.' . $image->getClientOriginalExtension();
+            $image->move($destinationPath, $categoryImage);
+            $input->bg_image = $destinationPath . $categoryImage;
+        }
+
         $input->save();
         return redirect()->back();
     }
@@ -104,10 +107,10 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        $post = Post::find($id);
-        @unlink($post->image);
-
-        $post->delete();
+        $section = Section::find($id);
+        @unlink($section->image);
+        @unlink($section->bg_image);
+        $section->delete();
 
         return redirect()->back();
     }

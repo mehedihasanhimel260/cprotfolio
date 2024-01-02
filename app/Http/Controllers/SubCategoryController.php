@@ -6,7 +6,6 @@ use App\Models\Category;
 use App\Models\SubCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-use Illuminate\Support\Facades\File;
 class SubCategoryController extends Controller
 {
     /**
@@ -78,9 +77,7 @@ class SubCategoryController extends Controller
 
         $category->category_id = $request->category_id;
         if ($image = $request->file('image')) {
-            if (File::exists($category->image)) {
-                File::delete($category->image);
-            }
+            @unlink($category->image);
             $destinationPath = 'upload/';
             $newImageName = date('YmdHis') . '.' . $image->getClientOriginalExtension();
             $image->move($destinationPath, $newImageName);
@@ -103,10 +100,7 @@ class SubCategoryController extends Controller
     {
         $subCategory = SubCategory::find($id);
 
-        if (File::exists($subCategory->image)) {
-            File::delete($subCategory->image);
-        }
-
+        @unlink($subCategory->image);
         $subCategory->delete();
 
         return redirect()->back();
