@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\SubCategoryController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -27,15 +28,17 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/admin/home', [HomeController::class, 'adminHome'])->name('admin.home');
         Route::resource('/admin/category', CategoryController::class);
         Route::resource('/admin/sub-category', SubCategoryController::class);
+        Route::resource('/admin/post', PostController::class);
     });
-
-    Route::middleware(['auth', 'user-access:user'])->group(function () {
-        Route::get('/home', [HomeController::class, 'index'])->name('home');
-    });
-});
 
 /*------------------------------------------
 --------------------------------------------
 All Admin Routes List
 --------------------------------------------
 --------------------------------------------*/
+
+    Route::middleware(['auth', 'user-access:user'])->group(function () {
+        Route::get('/home', [HomeController::class, 'index'])->name('home');
+    });
+});
+

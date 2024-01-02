@@ -68,15 +68,13 @@ class CategoryController extends Controller
     public function update(Request $request, $id)
     {
         $category = Category::find($id);
-
         $category->name = $request->name;
         $category->slug = Str::slug($request->name);
-
         if ($image = $request->file('image')) {
             if (File::exists($category->image)) {
                 File::delete($category->image);
             }
-            $destinationPath = public_path('upload/');
+            $destinationPath = 'upload/';
             $newImageName = date('YmdHis') . '.' . $image->getClientOriginalExtension();
             $image->move($destinationPath, $newImageName);
 

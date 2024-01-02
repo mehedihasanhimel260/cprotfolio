@@ -5,9 +5,14 @@
 
             <div class="col-sm-12 col-xl-6">
                 <div class="bg-secondary rounded p-4">
-                    <h6 class="mb-4">Category Create Form</h6>
-                    <form action="{{ route('sub-category.store') }}" method="POST" enctype="multipart/form-data">
+                    <h6 class="mb-4">Post Create Form</h6>
+                    <form action="{{ route('post.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
+                        <div class="mb-3">
+                            <label for="title" class="form-label"> Title</label>
+                            <input type="text" class="form-control" name="title" id="title"
+                                aria-describedby="title">
+                        </div>
                         <div class="mb-3">
                             <label for="category" class="form-label"> Parent Category Name</label>
                             <select class="form-select mb-3" aria-label="Default select example" name="category_id">
@@ -18,12 +23,21 @@
                             </select>
                         </div>
                         <div class="mb-3">
-                            <label for="category" class="form-label">Category Name</label>
-                            <input type="text" class="form-control" name="name" id="category"
-                                aria-describedby="category">
+                            <label for="category" class="form-label"> Sub Category Name</label>
+                            <select class="form-select mb-3" aria-label="Default select example" name="sub_category_id">
+                                <option selected="">Open Sub Category Name</option>
+                                @foreach ($subCategories as $item)
+                                    <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                @endforeach
+                            </select>
                         </div>
                         <div class="mb-3">
-                            <label for="category" class="form-label">Category Image</label>
+                            <label for="Description" class="form-label"> Description</label>
+                            <textarea id="myTextarea" name="description" class="form-control" placeholder="Leave a Description here"
+                                id="floatingTextarea"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="category" class="form-label"> Image</label>
                             <input type="file" name="image" id="category" class="form-control bg-dark"
                                 aria-describedby="category" id="file-ip-1" accept="image/*" onchange="showPreview(event);">
                         </div>
@@ -40,7 +54,7 @@
     <div class="container-fluid pt-4 px-4">
         <div class="bg-secondary text-center rounded p-4">
             <div class="d-flex align-items-center justify-content-between mb-4">
-                <h6 class="mb-0">All Category</h6>
+                <h6 class="mb-0">All Post</h6>
                 {{-- <a href="">Show All</a> --}}
             </div>
             <div class="table-responsive">
@@ -49,28 +63,27 @@
                         <tr class="text-white">
                             <th scope="col"><input class="form-check-input" type="checkbox"></th>
                             <th scope="col">Image</th>
-                            <th scope="col">Parent Category</th>
                             <th scope="col">Name</th>
-                            <th scope="col">slug</th>
+                            <th scope="col">Category</th>
+                            <th scope="col">Sub Category</th>
                             <th scope="col">Action</th>
                         </tr>
                     </thead>
                     <tbody>
 
-                        @foreach ($subCategory as $item)
+                        @foreach ($posts as $item)
                             <tr>
                                 <td><input class="form-check-input" type="checkbox"></td>
                                 <td><img src="{{ asset($item->image) }} " height="50px" width="100px"></td>
+                                <td>{{ $item->title }}</td>
                                 <td>{{ $item->category->name }}</td>
-                                <td>{{ $item->name }}</td>
-                                <td>{{ $item->slug }}</td>
+                                <td>{{ $item->subCategory->name ?? null }}</td>
                                 <td class="text-center">
-                                    <a class="btn btn-sm btn-primary"
-                                        href="{{ route('sub-category.edit', $item->id) }}">Edit</a>
+                                    <a class="btn btn-sm btn-primary" href="{{ route('post.edit', $item->id) }}">Edit</a>
                                     <a href="#" class="btn btn-sm btn-primary" onclick="hit(event)">Delete </a>
 
-                                    <form id="delete-form" action="{{ route('sub-category.destroy', $item->id) }}"
-                                        method="POST" class="d-none">
+                                    <form id="delete-form" action="{{ route('post.destroy', $item->id) }}" method="POST"
+                                        class="d-none">
                                         @method('DELETE')
                                         @csrf
                                     </form>

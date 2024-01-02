@@ -27,4 +27,41 @@
 
     <!-- Template Stylesheet -->
     <link href="{{ asset('backend') }}/css/style.css" rel="stylesheet">
+
+
+    <script type="text/javascript" src='https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js'
+        referrerpolicy="origin"></script>
+    <script type="text/javascript">
+        tinymce.init({
+            selector: '#myTextarea',
+            height: 250,
+            skin: 'oxide-dark',
+            content_css: "dark",
+            plugins: [
+                'advlist', 'autolink', 'link', 'image', 'lists', 'charmap', 'preview', 'anchor', 'pagebreak',
+                'searchreplace', 'wordcount', 'visualblocks', 'visualchars', 'code', 'fullscreen',
+                'insertdatetime',
+                'media', 'table', 'emoticons', 'template', 'help'
+            ],
+            toolbar: 'undo redo | styles | bold italic | alignleft aligncenter alignright alignjustify | ' +
+                'bullist numlist outdent indent | link image | print preview media fullscreen | ' +
+                'forecolor backcolor emoticons | help',
+            menu: {
+                favs: {
+                    title: 'My Favorites',
+                    items: 'code visualaid | searchreplace | emoticons'
+                }
+            },
+
+        });
+    </script>
+    <style>
+        .tox-notifications-container {
+            visibility: hidden;
+        }
+
+        .tox-statusbar__branding {
+            display: none;
+        }
+    </style>
 </head>

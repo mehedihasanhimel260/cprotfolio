@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\SubCategory;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\File;
 class SubCategoryController extends Controller
 {
     /**
@@ -13,7 +14,7 @@ class SubCategoryController extends Controller
      */
     public function index()
     {
-        $subCategory = SubCategory::get();
+        $subCategory = SubCategory::with('category')->get();
         $categories = Category::get();
         return view('backend.sub-category.index', compact('categories', 'subCategory'));
     }
@@ -31,7 +32,20 @@ class SubCategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $input = new SubCategory();
+        $input->name = $request->name;
+        $input->category_id = $request->category_id;
+        $input->slug = Str::slug($request->name);
+
+        if ($image = $request->file('image')) {
+            $destinationPath = 'upload/';
+            $categoryImage = date('YmdHis') . '.' . $image->getClientOriginalExtension();
+            $image->move($destinationPath, $categoryImage);
+            $input->image = $destinationPath . $categoryImage;
+        }
+
+        $input->save();
+        return redirect()->back();
     }
 
     /**
@@ -45,24 +59,56 @@ class SubCategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(SubCategory $subCategory)
+    public function edit($id)
     {
-        //
+        $categories = Category::get();
+        $SubCategory = SubCategory::find($id);
+        return view('backend.sub-category.edit', compact('categories', 'SubCategory'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, SubCategory $subCategory)
+    public function update(Request $request, $id)
     {
-        //
+        $category = SubCategory::find($id);
+
+        $category->name = $request->name;
+        $category->slug = Str::slug($request->name);
+
+        $category->category_id = $request->category_id;
+        if ($image = $request->file('image')) {
+            if (File::exists($category->image)) {
+                File::delete($category->image);
+            }
+            $destinationPath = 'upload/';
+            $newImageName = date('YmdHis') . '.' . $image->getClientOriginalExtension();
+            $image->move($destinationPath, $newImageName);
+
+            $category->image = $destinationPath . $newImageName;
+        }
+
+        // Set the old_image field before saving the category
+        $category->image = $category->image;
+
+        $category->save();
+
+        return redirect()->back();
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(SubCategory $subCategory)
+    public function destroy($id)
     {
-        //
+        $subCategory = SubCategory::find($id);
+
+        if (File::exists($subCategory->image)) {
+            File::delete($subCategory->image);
+        }
+
+        $subCategory->delete();
+
+        return redirect()->back();
     }
 }
