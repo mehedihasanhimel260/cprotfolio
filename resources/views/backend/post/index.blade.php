@@ -76,7 +76,7 @@
                                 <td><input class="form-check-input" type="checkbox"></td>
                                 <td><img src="{{ asset($item->image) }} " height="50px" width="100px"></td>
                                 <td>{{ $item->title }}</td>
-                                <td>{{ $item->category->name }}</td>
+                                <td>{{ $item->category->name ?? null }}</td>
                                 <td>{{ $item->subCategory->name ?? null }}</td>
                                 <td class="text-center">
                                     <a class="btn btn-sm btn-primary" href="{{ route('post.edit', $item->id) }}">Edit</a>

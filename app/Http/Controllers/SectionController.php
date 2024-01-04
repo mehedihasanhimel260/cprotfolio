@@ -13,7 +13,9 @@ class SectionController extends Controller
     public function index()
     {
         $pages = Page::get();
-        return view('backend.section.index', compact('pages'));
+
+        $sections = Section::get();
+        return view('backend.section.index', compact('pages', 'sections'));
     }
 
     /**
@@ -68,7 +70,7 @@ class SectionController extends Controller
     {
         $pages = Page::get();
         $section = Section::find($id);
-        return view('backend.section.index', compact('section', 'pages'));
+        return view('backend.section.edit', compact('section', 'pages'));
     }
 
     /**
