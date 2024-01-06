@@ -64,6 +64,7 @@
                             <th scope="col"><input class="form-check-input" type="checkbox"></th>
                             <th scope="col">Image</th>
                             <th scope="col">Name</th>
+                            <th scope="col">Author</th>
                             <th scope="col">Category</th>
                             <th scope="col">Sub Category</th>
                             <th scope="col">Action</th>
@@ -76,6 +77,7 @@
                                 <td><input class="form-check-input" type="checkbox"></td>
                                 <td><img src="{{ asset($item->image) }} " height="50px" width="100px"></td>
                                 <td>{{ $item->title }}</td>
+                                <td>{{ $item->userCreator->name ?? null }}</td>
                                 <td>{{ $item->category->name ?? null }}</td>
                                 <td>{{ $item->subCategory->name ?? null }}</td>
                                 <td class="text-center">

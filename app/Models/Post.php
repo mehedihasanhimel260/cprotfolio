@@ -17,4 +17,8 @@ class Post extends Model
     {
         return $this->belongsTo(SubCategory::class, 'sub_category_id');
     }
+    public function userCreator()
+    {
+        return $this->belongsTo(User::class, 'post_creator');
+    }
 }

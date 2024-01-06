@@ -12,8 +12,9 @@ return new class extends Migration {
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
-            $table->integer('category_id');
-            $table->integer('sub_category_id');
+            $table->foreignId('post_creator');
+            $table->foreignId('category_id');
+            $table->foreignId('sub_category_id');
             $table->string('title');
             $table->string('slug');
             $table->text('description');
@@ -32,3 +33,4 @@ return new class extends Migration {
         Schema::dropIfExists('posts');
     }
 };
+

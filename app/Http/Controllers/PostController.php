@@ -7,7 +7,7 @@ use App\Models\Post;
 use App\Models\SubCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-
+use Illuminate\Support\Facades\Auth;
 class PostController extends Controller
 {
     /**
@@ -17,7 +17,7 @@ class PostController extends Controller
     {
         $categories = Category::get();
         $subCategories = SubCategory::get();
-        $posts = Post::with('category', 'subCategory')->get();
+        $posts = Post::with('category', 'subCategory', 'userCreator')->get();
 
         return view('backend.post.index', compact('categories', 'posts', 'subCategories'));
     }
@@ -36,6 +36,9 @@ class PostController extends Controller
     public function store(Request $request)
     {
         $input = new Post();
+        if (Auth::check()) {
+            $input->post_creator = Auth::id();
+        }
         $input->category_id = $request->category_id;
         $input->sub_category_id = $request->sub_category_id;
         $input->title = $request->title;
@@ -79,6 +82,9 @@ class PostController extends Controller
     public function update(Request $request, $id)
     {
         $input = Post::find($id);
+        if (Auth::check()) {
+            $input->post_creator = Auth::id();
+        }
         $input->category_id = $request->category_id;
         $input->sub_category_id = $request->sub_category_id;
         $input->title = $request->title;

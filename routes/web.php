@@ -6,6 +6,7 @@ use App\Http\Controllers\PageController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\SectionController;
 use App\Http\Controllers\SubCategoryController;
+use App\Http\Controllers\WebSettingsController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -33,6 +34,7 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('/admin/post', PostController::class);
         Route::resource('/admin/page', PageController::class);
         Route::resource('/admin/section', SectionController::class);
+        Route::resource('/admin/web-settings', WebSettingsController::class);
     });
 
     /*------------------------------------------

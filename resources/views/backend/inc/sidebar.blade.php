@@ -29,9 +29,18 @@
                     <a href="{{ route('sub-category.index') }}" class="dropdown-item ">Sub Category</a>
                 </div>
             </div>
-            <a href="{{ route('post.index') }}" class="nav-item nav-link {{ Request::routeIs('post.index') ? 'active' : '' }}"><i class="fa fa-chart-bar me-2"></i>Posts</a>
-            <a href="{{ route('page.index') }}" class="nav-item nav-link {{ Request::routeIs('page.index') ? 'active' : '' }}"><i class="fa fa-chart-bar me-2"></i>Page</a>
-            <a href="{{ route('section.index') }}" class="nav-item nav-link {{ Request::routeIs('section.index') ? 'active' : '' }}"><i class="fa fa-chart-bar me-2"></i>Section</a>
+            <a href="{{ route('post.index') }}"
+                class="nav-item nav-link {{ Request::routeIs('post.index') ? 'active' : '' }}"><i
+                    class="fa fa-chart-bar me-2"></i>Posts</a>
+            <a href="{{ route('page.index') }}"
+                class="nav-item nav-link {{ Request::routeIs('page.index') ? 'active' : '' }}"><i
+                    class="fa fa-chart-bar me-2"></i>Page</a>
+            <a href="{{ route('section.index') }}"
+                class="nav-item nav-link {{ Request::routeIs('section.index') ? 'active' : '' }}"><i
+                    class="fa fa-chart-bar me-2"></i>Section</a>
+            <a href="{{ route('web-settings.index') }}"
+                class="nav-item nav-link {{ Request::routeIs('web-settings.index') ? 'active' : '' }}"><i
+                    class="fa fa-chart-bar me-2"></i>Web Settings</a>
             <div class="nav-item dropdown">
                 <a href="{{ route('page.index') }}" class="nav-link dropdown-toggle " data-bs-toggle="dropdown"><i
                         class="far fa-file-alt me-2"></i>Page</a>
