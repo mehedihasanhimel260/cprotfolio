@@ -25,6 +25,8 @@ class WebSettingsController extends Controller
         $input->contact_2 = $request->contact_2;
         $input->email_1 = $request->email_1;
         $input->email_2 = $request->email_2;
+        $input->address_1 = $request->address_1;
+        $input->address_2 = $request->address_2;
         $html = $request->map;
         $startPos = strpos($html, 'src="') + strlen('src="');
         $endPos = strpos($html, '"', $startPos);

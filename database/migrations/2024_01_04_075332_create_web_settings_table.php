@@ -28,6 +28,8 @@ return new class extends Migration {
             $table->string('social_link_3');
             $table->string('social_link_4');
             $table->string('social_link_5');
+            $table->text('address_1');
+            $table->text('address_2')->nullable();
             $table->string('working_time');
             $table->string('bg_image')->nullable();
             $table->timestamps();

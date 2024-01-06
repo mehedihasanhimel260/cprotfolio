@@ -1,80 +1,63 @@
-@extends('layouts.app')
-
+@extends('frontend.layout')
 @section('content')
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">{{ __('Login') }}</div>
-
-                    <div class="card-body">
+    <section class="block-inner">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <h1>Login & Registration</h1>
+                    <div class="breadcrumbs">
+                        <ul>
+                            <li><i class="pe-7s-home"></i> <a href="{{ url('/') }}" title="">Home</a></li>
+                            <li><a href="#" title="">Login & Registration</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="login-reg-inner">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="login-form-inner">
+                        <h3 class="category-headding ">LOGIN TO YOUR ACCOUNT</h3>
+                        <div class="headding-border bg-color-1"></div>
                         <form method="POST" action="{{ route('login') }}">
                             @csrf
+                            <label>Username Or Email <sup>*</sup></label>
+                            <input type="email" class="form-control" id="name" name="email"
+                                placeholder="Username or Email">
+                            <label>Password <sup>*</sup></label>
+                            <input type="password" class="form-control" id="pass" name="password"
+                                placeholder="*******">
+                            <label class="checkbox-inline">
+                                <input type="checkbox" value="">Remember me</label>
+                            <button type="submit" class="btn btn-style">Login</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="register-form-inner">
+                        <h3 class="category-headding ">REGISTER NOW!</h3>
+                        <div class="headding-border bg-color-1"></div>
+                        <form method="POST" action="{{ route('register') }}">
+                            @csrf
 
-                            <div class="row mb-3">
-                                <label for="email"
-                                    class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
-
-                                <div class="col-md-6">
-                                    <input id="email" type="email"
-                                        class="form-control @error('email') is-invalid @enderror" name="email"
-                                        value="{{ old('email') }}" required autocomplete="email" autofocus>
-
-                                    @error('email')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="row mb-3">
-                                <label for="password"
-                                    class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
-
-                                <div class="col-md-6">
-                                    <input id="password" type="password"
-                                        class="form-control @error('password') is-invalid @enderror" name="password"
-                                        required autocomplete="current-password">
-
-                                    @error('password')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="row mb-3">
-                                <div class="col-md-6 offset-md-4">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" name="remember" id="remember"
-                                            {{ old('remember') ? 'checked' : '' }}>
-
-                                        <label class="form-check-label" for="remember">
-                                            {{ __('Remember Me') }}
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row mb-0">
-                                <div class="col-md-8 offset-md-4">
-                                    <button type="submit" class="btn btn-primary">
-                                        {{ __('Login') }}
-                                    </button>
-
-                                    @if (Route::has('password.request'))
-                                        <a class="btn btn-link" href="{{ route('password.request') }}">
-                                            {{ __('Forgot Your Password?') }}
-                                        </a>
-                                    @endif
-                                </div>
-                            </div>
+                            <label>Name <sup>*</sup></label>
+                            <input type="text" class="form-control" id="name_email_2" name="name" placeholder="Name ">
+                            <label> Email <sup>*</sup></label>
+                            <input type="email" class="form-control" id="name_email_2" name="email" placeholder="Email">
+                            <label>Password <sup>*</sup></label>
+                            <input type="password" class="form-control" id="pass_2" name="password"
+                                placeholder="Write Your Password Here ...">
+                            <label>Repeat Password <sup>*</sup></label>
+                            <input type="password" class="form-control" id="pass_3" name="password_confirmation"
+                                placeholder="Rewrite Your Password Here ...">
+                            <button type="submit" class="btn btn-style">Register Now!</button>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 @endsection
