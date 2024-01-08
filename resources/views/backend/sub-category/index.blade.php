@@ -61,7 +61,7 @@
                             <tr>
                                 <td><input class="form-check-input" type="checkbox"></td>
                                 <td><img src="{{ asset($item->image) }} " height="50px" width="100px"></td>
-                                <td>{{ $item->category->name }}</td>
+                                <td>{{ $item->category->name ?? null }}</td>
                                 <td>{{ $item->name }}</td>
                                 <td>{{ $item->slug }}</td>
                                 <td class="text-center">

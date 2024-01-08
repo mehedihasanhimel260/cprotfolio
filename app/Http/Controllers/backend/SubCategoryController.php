@@ -1,19 +1,22 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\backend;
+use App\Http\Controllers\Controller;
 
-use App\Models\Page;
+use App\Models\Category;
+use App\Models\SubCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-class PageController extends Controller
+class SubCategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $pages = Page::get();
-        return view('backend.page.index', compact('pages'));
+        $subCategory = SubCategory::with('category')->get();
+        $categories = Category::get();
+        return view('backend.sub-category.index', compact('categories', 'subCategory'));
     }
 
     /**
@@ -29,8 +32,9 @@ class PageController extends Controller
      */
     public function store(Request $request)
     {
-        $input = new Page();
+        $input = new SubCategory();
         $input->name = $request->name;
+        $input->category_id = $request->category_id;
         $input->slug = Str::slug($request->name);
 
         if ($image = $request->file('image')) {
@@ -47,7 +51,7 @@ class PageController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Page $page)
+    public function show(SubCategory $subCategory)
     {
         //
     }
@@ -57,8 +61,9 @@ class PageController extends Controller
      */
     public function edit($id)
     {
-        $page = Page::find($id);
-        return view('backend.page.edit', compact('page'));
+        $categories = Category::get();
+        $SubCategory = SubCategory::find($id);
+        return view('backend.sub-category.edit', compact('categories', 'SubCategory'));
     }
 
     /**
@@ -66,9 +71,12 @@ class PageController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $category = Page::find($id);
+        $category = SubCategory::find($id);
+
         $category->name = $request->name;
         $category->slug = Str::slug($request->name);
+
+        $category->category_id = $request->category_id;
         if ($image = $request->file('image')) {
             @unlink($category->image);
             $destinationPath = 'upload/';
@@ -91,9 +99,10 @@ class PageController extends Controller
      */
     public function destroy($id)
     {
-        $page = Page::find($id);
-        @unlink($page->image);
-        $page->delete();
+        $subCategory = SubCategory::find($id);
+
+        @unlink($subCategory->image);
+        $subCategory->delete();
 
         return redirect()->back();
     }

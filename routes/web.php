@@ -1,12 +1,12 @@
 <?php
 
-use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\backend\CategoryController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\PageController;
-use App\Http\Controllers\PostController;
-use App\Http\Controllers\SectionController;
-use App\Http\Controllers\SubCategoryController;
-use App\Http\Controllers\WebSettingsController;
+use App\Http\Controllers\backend\PageController;
+use App\Http\Controllers\backend\PostController;
+use App\Http\Controllers\backend\SectionController;
+use App\Http\Controllers\backend\SubCategoryController;
+use App\Http\Controllers\backend\WebSettingsController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
