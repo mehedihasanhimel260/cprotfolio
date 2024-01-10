@@ -14,13 +14,21 @@ class HomePageController extends Controller
             ->latest()
             ->take(5)
             ->get();
+        $international = Post::Where('sub_category_id', 5)
+            ->latest()
+            ->take(5)
+            ->get();
         $business = Post::Where('category_id', 8)
+            ->latest()
+            ->take(5)
+            ->get();
+        $technology = Post::Where('category_id', 11)
             ->latest()
             ->take(5)
             ->get();
         $recent_news = Post::latest()
             ->take(11)
             ->get();
-        return view('frontend.home.index', compact('recent_news', 'politics', 'business'));
+        return view('frontend.home.index', compact('recent_news', 'politics', 'business', 'international', 'technology'));
     }
 }

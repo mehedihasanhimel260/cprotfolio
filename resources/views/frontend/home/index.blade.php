@@ -95,7 +95,7 @@
                     </div>
                 </section>
                 <!-- Politics Area
-                                                            ============================================ -->
+                                                                                                    ============================================ -->
                 <section class="politics_wrapper">
                     <h3 class="category-headding ">POLITICS</h3>
                     <div class="headding-border"></div>
@@ -458,157 +458,131 @@
                 <div class="col-md-8 col-sm-8">
                     <div class="row">
                         <!-- business Area
-                                                                    ============================================ -->
+                                                                                                            ============================================ -->
                         <div class="col-sm-6 col-md-6">
                             <div class="buisness">
                                 <h3 class="category-headding ">BUSINESS</h3>
                                 <div class="headding-border bg-color-5"></div>
-                                <div class="post-wrapper wow fadeIn" data-wow-duration="1s">
-                                    <!-- post title -->
-                                    <h3><a href="#">There are many variations of passages of Lorem
-                                            Ipsum available</a></h3>
-                                    <!-- post image -->
-                                    <div class="post-thumb">
-                                        <a href="#">
-                                            <img src="{{ asset('frontend') }}/images/business-01.jpg"
-                                                class="img-responsive" alt="">
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="post-title-author-details">
-                                    <div class="post-editor-date">
-                                        <!-- post date -->
-                                        <div class="post-date">
-                                            <i class="pe-7s-clock"></i> Oct 6, 2016
-                                        </div>
-                                        <!-- post comment -->
-                                        <div class="post-author-comment"><i class="pe-7s-comment"></i> 13
+                                @foreach ($business->take(1) as $busines)
+                                    <div class="post-wrapper wow fadeIn" data-wow-duration="1s">
+                                        <!-- post title -->
+                                        <h3><a href="#">{{ $busines->title }}</a></h3>
+                                        <!-- post image -->
+                                        <div class="post-thumb">
+                                            <a href="#">
+                                                <img src="{{ asset($busines->image) }}" class="img-responsive"
+                                                    alt="">
+                                            </a>
                                         </div>
                                     </div>
-                                    <p>All the Lorem Ipsum generators on the Internet tend to repeat
-                                        predefined chunks as necessary, making this the first true <a href="#">Read
-                                            more...</a></p>
-                                </div>
-                                <div class="box-item wow fadeIn" data-wow-duration="1s" data-wow-delay="0.2s">
-                                    <div class="img-thumb">
-                                        <a href="#" rel="bookmark"><img class="entry-thumb"
-                                                src="{{ asset('frontend') }}/images/business-02.jpg" alt=""
-                                                height="70" width="100"></a>
-                                    </div>
-                                    <div class="item-details">
-                                        <h3 class="td-module-title"><a href="#">Lorem Ipum therefore
-                                                always free from repetition</a></h3>
+                                    <div class="post-title-author-details">
                                         <div class="post-editor-date">
                                             <!-- post date -->
                                             <div class="post-date">
-                                                <i class="pe-7s-clock"></i> Oct 6, 2016
+                                                <i class="pe-7s-clock"></i> {{ $busines->created_at->format('M j, Y') }}
                                             </div>
                                             <!-- post comment -->
-                                            <div class="post-author-comment"><i class="pe-7s-comment"></i>
-                                                13 </div>
+                                            {{-- <div class="post-author-comment"><i class="pe-7s-comment"></i> 13
+                                            </div> --}}
                                         </div>
+                                        <p>{{ strlen(strip_tags($busines->description)) > 50 ? substr(strip_tags($busines->description), 0, 150) . '...' : strip_tags($busines->description) }}
+                                            @if (strlen(strip_tags($busines->description)) > 50)
+                                                <a href="#">Read More</a>
+                                            @endif
+                                        </p>
                                     </div>
-                                </div>
-                                <div class="box-item wow fadeIn" data-wow-duration="1s" data-wow-delay="0.3s">
-                                    <div class="img-thumb">
-                                        <a href="#" rel="bookmark"><img class="entry-thumb"
-                                                src="{{ asset('frontend') }}/images/business-03.jpg" alt=""
-                                                height="70" width="100"></a>
-                                    </div>
-                                    <div class="item-details">
-                                        <h3 class="td-module-title"><a href="#">Lorem Ipum therefore
-                                                always free from repetition</a></h3>
-                                        <div class="post-editor-date">
-                                            <!-- post date -->
-                                            <div class="post-date">
-                                                <i class="pe-7s-clock"></i> Oct 6, 2016
+                                @endforeach
+                                @foreach ($business->skip(1) as $busines)
+                                    <div class="box-item wow fadeIn" data-wow-duration="1s" data-wow-delay="0.2s">
+                                        <div class="img-thumb">
+                                            <a href="#" rel="bookmark"><img class="entry-thumb"
+                                                    src="{{ asset($busines->image) }}" alt="" height="70"
+                                                    width="100"></a>
+                                        </div>
+                                        <div class="item-details">
+                                            <h3 class="td-module-title"><a href="#">{{ $busines->title }}</a></h3>
+                                            <div class="post-editor-date">
+                                                <!-- post date -->
+                                                <div class="post-date">
+                                                    <i class="pe-7s-clock"></i>
+                                                    {{ $busines->created_at->format('M j, Y') }}
+                                                </div>
+                                                <!-- post comment -->
+                                                {{-- <div class="post-author-comment"><i class="pe-7s-comment"></i>
+                                                    13 </div> --}}
                                             </div>
-                                            <!-- post comment -->
-                                            <div class="post-author-comment"><i class="pe-7s-comment"></i>
-                                                13 </div>
                                         </div>
                                     </div>
-                                </div>
+                                @endforeach
                             </div>
                         </div>
                         <!-- international Area
-                                                                    ============================================ -->
+                                                                                                            ============================================ -->
                         <div class="col-sm-6 col-md-6">
-                            <div class="international">
+                            <div class="buisness">
                                 <h3 class="category-headding ">INTERNATIONAL</h3>
-                                <div class="headding-border bg-color-2"></div>
-                                <div class="post-wrapper wow fadeIn" data-wow-duration="1s">
-                                    <!-- post title -->
-                                    <h3><a href="#">There are many variations of passages of Lorem
-                                            Ipsum available</a></h3>
-                                    <!-- post image -->
-                                    <div class="post-thumb">
-                                        <a href="#">
-                                            <img src="{{ asset('frontend') }}/images/international.jpg"
-                                                class="img-responsive" alt="">
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="post-title-author-details">
-                                    <div class="post-editor-date">
-                                        <!-- post date -->
-                                        <div class="post-date">
-                                            <i class="pe-7s-clock"></i> Oct 6, 2016
-                                        </div>
-                                        <!-- post comment -->
-                                        <div class="post-author-comment"><i class="pe-7s-comment"></i> 13
+                                <div class="headding-border bg-color-5"></div>
+                                @foreach ($international->take(1) as $busines)
+                                    <div class="post-wrapper wow fadeIn" data-wow-duration="1s">
+                                        <!-- post title -->
+                                        <h3><a href="#">{{ $busines->title }}</a></h3>
+                                        <!-- post image -->
+                                        <div class="post-thumb">
+                                            <a href="#">
+                                                <img src="{{ asset($busines->image) }}" class="img-responsive"
+                                                    alt="">
+                                            </a>
                                         </div>
                                     </div>
-                                    <p>All the Lorem Ipsum generators on the Internet tend to repeat
-                                        predefined chunks as necessary, making this the first true <a href="#">Read
-                                            more...</a></p>
-                                </div>
-                                <div class="box-item wow fadeIn" data-wow-duration="1s" data-wow-delay="0.2s">
-                                    <div class="img-thumb">
-                                        <a href="#" rel="bookmark"><img class="entry-thumb"
-                                                src="{{ asset('frontend') }}/images/international-2.jpg" alt=""
-                                                height="70" width="100"></a>
-                                    </div>
-                                    <div class="item-details">
-                                        <h3 class="td-module-title"><a href="#">Lorem Ipum therefore
-                                                always free from repetition</a></h3>
+                                    <div class="post-title-author-details">
                                         <div class="post-editor-date">
                                             <!-- post date -->
                                             <div class="post-date">
-                                                <i class="pe-7s-clock"></i> Oct 6, 2016
+                                                <i class="pe-7s-clock"></i> {{ $busines->created_at->format('M j, Y') }}
                                             </div>
                                             <!-- post comment -->
-                                            <div class="post-author-comment"><i class="pe-7s-comment"></i>
-                                                13 </div>
+                                            {{-- <div class="post-author-comment"><i class="pe-7s-comment"></i> 13
+                                                                                                </div> --}}
                                         </div>
+                                        <p>{{ strlen(strip_tags($busines->description)) > 50 ? substr(strip_tags($busines->description), 0, 150) . '...' : strip_tags($busines->description) }}
+                                            @if (strlen(strip_tags($busines->description)) > 50)
+                                                <a href="#">Read More</a>
+                                            @endif
+                                        </p>
                                     </div>
-                                </div>
-                                <div class="box-item wow fadeIn" data-wow-duration="1s" data-wow-delay="0.3s">
-                                    <div class="img-thumb">
-                                        <a href="#" rel="bookmark"><img class="entry-thumb"
-                                                src="{{ asset('frontend') }}/images/international-3.jpg" alt=""
-                                                height="70" width="100"></a>
-                                    </div>
-                                    <div class="item-details">
-                                        <h3 class="td-module-title"><a href="#">Lorem Ipum therefore
-                                                always free from repetition</a></h3>
-                                        <div class="post-editor-date">
-                                            <!-- post date -->
-                                            <div class="post-date">
-                                                <i class="pe-7s-clock"></i> Oct 6, 2016
+                                @endforeach
+                                @foreach ($international->skip(1) as $busines)
+                                    <div class="box-item wow fadeIn" data-wow-duration="1s" data-wow-delay="0.2s">
+                                        <div class="img-thumb">
+                                            <a href="#" rel="bookmark"><img class="entry-thumb"
+                                                    src="{{ asset($busines->image) }}" alt="" height="70"
+                                                    width="100"></a>
+                                        </div>
+                                        <div class="item-details">
+                                            <h3 class="td-module-title"><a href="#">{{ $busines->title }}</a></h3>
+                                            <div class="post-editor-date">
+                                                <!-- post date -->
+                                                <div class="post-date">
+                                                    <i class="pe-7s-clock"></i>
+                                                    {{ $busines->created_at->format('M j, Y') }}
+                                                </div>
+                                                <!-- post comment -->
+                                                {{-- <div class="post-author-comment"><i class="pe-7s-comment"></i>
+                                                                                                        13 </div> --}}
                                             </div>
-                                            <!-- post comment -->
-                                            <div class="post-author-comment"><i class="pe-7s-comment"></i>
-                                                13 </div>
                                         </div>
                                     </div>
-                                </div>
+                                @endforeach
                             </div>
-                            <!-- /.international -->
                         </div>
                     </div>
                     <!-- technology Area
-                                                                ============================================ -->
+                                                                                                        ============================================ -->
+
+
+
+
+
                     <section class="politics_wrapper">
                         <h3 class="category-headding ">TECHNOLOGY</h3>
                         <div class="headding-border"></div>
@@ -619,267 +593,75 @@
                                     <div class="row">
                                         <!-- left side post -->
                                         <div class="col-sm-6 col-md-6">
-                                            <div class="post-wrapper wow fadeIn" data-wow-duration="1s">
-                                                <!-- post title -->
-                                                <h3><a href="#">There are many variations of passages
-                                                        of Lorem Ipsum available</a></h3>
-                                                <!-- post image -->
-                                                <div class="post-thumb">
-                                                    <a href="#">
-                                                        <img src="{{ asset('frontend') }}/images/technology/tecnology-01.jpg"
-                                                            class="img-responsive" alt="">
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div class="post-title-author-details">
-                                                <div class="post-editor-date">
-                                                    <!-- post date -->
-                                                    <div class="post-date">
-                                                        <i class="pe-7s-clock"></i> Oct 6, 2016
+                                            @foreach ($technology->take(1) as $politic)
+                                                <div class="home2-post">
+                                                    <div class="post-wrapper wow fadeIn" data-wow-duration="1s">
+                                                        <!-- post image -->
+                                                        <div class="post-thumb">
+                                                            <a href="#">
+                                                                <img src="{{ asset($politic->image) }}"
+                                                                    class="img-responsive" alt="">
+                                                            </a>
+                                                        </div>
+                                                        <!-- post title -->
+                                                        <h3><a href="#">{{ $politic->title }}</a></h3>
                                                     </div>
-                                                    <!-- post comment -->
-                                                    <div class="post-author-comment"><i class="pe-7s-comment"></i>
-                                                        13 </div>
+                                                    <div class="post-title-author-details">
+                                                        <div class="date">
+                                                            <ul>
+                                                                <li>By <a title=""
+                                                                        href="#"><span>{{ $politic->userCreator->name }}</span></a>
+                                                                    --</li>
+                                                                <li><a title=""
+                                                                        href="#">{{ $politic->created_at->format('M j, Y') }}</a>
+                                                                    --</li>
+                                                                <li><a title=""
+                                                                        href="#"><span>{{ $politic->category->name ?? null }}</span></a>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                        <p> {{ strlen(strip_tags($politic->description)) > 50 ? substr(strip_tags($politic->description), 0, 150) . '...' : strip_tags($politic->description) }}
+                                                            @if (strlen(strip_tags($politic->description)) > 50)
+                                                                <a href="#">Read More</a>
+                                                            @endif
+                                                        </p>
+                                                    </div>
                                                 </div>
-                                                <p>All the Lorem Ipsum generators on the Internet tend to
-                                                    repeat predefined chunks as necessary, making this the
-                                                    first true <a href="#">Read more...</a></p>
-                                            </div>
+                                            @endforeach
+
                                         </div>
                                         <!-- right side post -->
                                         <div class="col-sm-6 col-md-6">
                                             <div class="row rn_block">
-                                                <div class="col-xs-6 col-md-6 col-sm-6 post-padding">
-                                                    <!-- post image -->
-                                                    <div class="post-thumb wow fadeIn" data-wow-duration="1s"
-                                                        data-wow-delay="0.2s">
-                                                        <a href="#">
-                                                            <img src="{{ asset('frontend') }}/images/technology/tecnology-02.jpg"
-                                                                class="img-responsive" alt="">
-                                                        </a>
-                                                    </div>
-                                                    <div class="post-title-author-details">
-                                                        <!-- post image -->
-                                                        <h5><a href="#">Microbus runs over 2
-                                                                pedestrians in Banani</a></h5>
-                                                        <div class="post-editor-date">
-                                                            <!-- post date -->
-                                                            <div class="post-date">
-                                                                <i class="pe-7s-clock"></i> Oct 6, 2016
+                                                @foreach ($technology->skip(1) as $politic)
+                                                    <div class="col-xs-6 col-md-6 col-sm-6 post-padding">
+                                                        <div class="home2-post">
+                                                            <!-- post image -->
+                                                            <div class="post-thumb wow fadeIn" data-wow-duration="1s"
+                                                                data-wow-delay="0.2s">
+                                                                <a href="#">
+                                                                    <img src="{{ asset($politic->image) }}"
+                                                                        class="img-responsive" alt="">
+                                                                </a>
                                                             </div>
-                                                            <!-- post comment -->
-                                                            <div class="post-author-comment"><i class="pe-7s-comment"></i>
-                                                                13 </div>
+                                                            <div class="post-title-author-details">
+                                                                <!-- post image -->
+                                                                <h5><a href="#">{{ $politic->title }}</a></h5>
+                                                                <div class="date">
+                                                                    <ul>
+                                                                        <li><a title=""
+                                                                                href="#"><span>{{ $politic->userCreator->name }}</span></a>
+                                                                            --</li>
+                                                                        <li><a title=""
+                                                                                href="#">{{ $politic->created_at->format('M j, Y') }}</a>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div class="col-xs-6 col-md-6 col-sm-6 post-padding">
-                                                    <!-- post image -->
-                                                    <div class="post-thumb wow fadeIn" data-wow-duration="1s"
-                                                        data-wow-delay="0.3s">
-                                                        <a href="#">
-                                                            <img src="{{ asset('frontend') }}/images/technology/tecnology-03.jpg"
-                                                                class="img-responsive" alt="">
-                                                        </a>
-                                                    </div>
-                                                    <div class="post-title-author-details">
-                                                        <!-- post image -->
-                                                        <h5><a href="#">Microbus runs over 2
-                                                                pedestrians in Banani</a></h5>
-                                                        <div class="post-editor-date">
-                                                            <!-- post date -->
-                                                            <div class="post-date">
-                                                                <i class="pe-7s-clock"></i> Oct 6, 2016
-                                                            </div>
-                                                            <!-- post comment -->
-                                                            <div class="post-author-comment"><i class="pe-7s-comment"></i>
-                                                                13 </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-xs-6 col-md-6 col-sm-6 post-padding">
-                                                    <!-- post image -->
-                                                    <div class="post-thumb wow fadeIn" data-wow-duration="1s"
-                                                        data-wow-delay="0.4s">
-                                                        <a href="#">
-                                                            <img src="{{ asset('frontend') }}/images/technology/tecnology-04.jpg"
-                                                                class="img-responsive" alt="">
-                                                        </a>
-                                                    </div>
-                                                    <div class="post-title-author-details">
-                                                        <!-- post image -->
-                                                        <h5><a href="#">Microbus runs over 2
-                                                                pedestrians in Banani</a></h5>
-                                                        <div class="post-editor-date">
-                                                            <!-- post date -->
-                                                            <div class="post-date">
-                                                                <i class="pe-7s-clock"></i> Oct 6, 2016
-                                                            </div>
-                                                            <!-- post comment -->
-                                                            <div class="post-author-comment"><i class="pe-7s-comment"></i>
-                                                                13 </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-xs-6 col-md-6 col-sm-6 post-padding">
-                                                    <!-- post image -->
-                                                    <div class="post-thumb wow fadeIn" data-wow-duration="1s"
-                                                        data-wow-delay="0.5s">
-                                                        <a href="#">
-                                                            <img src="{{ asset('frontend') }}/images/technology/tecnology-05.jpg"
-                                                                class="img-responsive" alt="">
-                                                        </a>
-                                                    </div>
-                                                    <div class="post-title-author-details">
-                                                        <!-- post image -->
-                                                        <h5><a href="#">Microbus runs over 2
-                                                                pedestrians in Banani</a></h5>
-                                                        <div class="post-editor-date">
-                                                            <!-- post date -->
-                                                            <div class="post-date">
-                                                                <i class="pe-7s-clock"></i> Oct 6, 2016
-                                                            </div>
-                                                            <!-- post comment -->
-                                                            <div class="post-author-comment"><i class="pe-7s-comment"></i>
-                                                                13 </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- item-2 -->
-                                <div class="item">
-                                    <div class="row">
-                                        <!-- left side post -->
-                                        <div class="col-sm-6 col-md-6">
-                                            <div class="post-wrapper wow fadeIn" data-wow-duration="1s">
-                                                <!-- post title -->
-                                                <h3><a href="#">There are many variations of passages
-                                                        of Lorem Ipsum available</a></h3>
-                                                <!-- post image -->
-                                                <div class="post-thumb">
-                                                    <a href="#">
-                                                        <img src="{{ asset('frontend') }}/images/technology/tecnology-01.jpg"
-                                                            class="img-responsive" alt="">
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div class="post-title-author-details">
-                                                <div class="post-editor-date">
-                                                    <!-- post date -->
-                                                    <div class="post-date">
-                                                        <i class="pe-7s-clock"></i> Oct 6, 2016
-                                                    </div>
-                                                    <!-- post comment -->
-                                                    <div class="post-author-comment"><i class="pe-7s-comment"></i>
-                                                        13 </div>
-                                                </div>
-                                                <p>All the Lorem Ipsum generators on the Internet tend to
-                                                    repeat predefined chunks as necessary, making this the
-                                                    first true <a href="#">Read more...</a></p>
-                                            </div>
-                                        </div>
-                                        <!-- right side post -->
-                                        <div class="col-sm-6 col-md-6">
-                                            <div class="row rn_block">
-                                                <div class="col-xs-6 col-md-6 col-sm-6 post-padding">
-                                                    <!-- post image -->
-                                                    <div class="post-thumb wow fadeIn" data-wow-duration="1s"
-                                                        data-wow-delay="0.2s">
-                                                        <a href="#">
-                                                            <img src="{{ asset('frontend') }}/images/technology/tecnology-02.jpg"
-                                                                class="img-responsive" alt="">
-                                                        </a>
-                                                    </div>
-                                                    <div class="post-title-author-details">
-                                                        <!-- post image -->
-                                                        <h5><a href="#">Microbus runs over 2
-                                                                pedestrians in Banani</a></h5>
-                                                        <div class="post-editor-date">
-                                                            <!-- post date -->
-                                                            <div class="post-date">
-                                                                <i class="pe-7s-clock"></i> Oct 6, 2016
-                                                            </div>
-                                                            <!-- post comment -->
-                                                            <div class="post-author-comment"><i class="pe-7s-comment"></i>
-                                                                13 </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-xs-6 col-md-6 col-sm-6 post-padding">
-                                                    <!-- post image -->
-                                                    <div class="post-thumb wow fadeIn" data-wow-duration="1s"
-                                                        data-wow-delay="0.2s">
-                                                        <a href="#">
-                                                            <img src="{{ asset('frontend') }}/images/technology/tecnology-03.jpg"
-                                                                class="img-responsive" alt="">
-                                                        </a>
-                                                    </div>
-                                                    <div class="post-title-author-details">
-                                                        <!-- post image -->
-                                                        <h5><a href="#">Microbus runs over 2
-                                                                pedestrians in Banani</a></h5>
-                                                        <div class="post-editor-date">
-                                                            <!-- post date -->
-                                                            <div class="post-date">
-                                                                <i class="pe-7s-clock"></i> Oct 6, 2016
-                                                            </div>
-                                                            <!-- post comment -->
-                                                            <div class="post-author-comment"><i class="pe-7s-comment"></i>
-                                                                13 </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-xs-6 col-md-6 col-sm-6 post-padding">
-                                                    <!-- post image -->
-                                                    <div class="post-thumb wow fadeIn" data-wow-duration="1s"
-                                                        data-wow-delay="0.3s">
-                                                        <a href="#">
-                                                            <img src="{{ asset('frontend') }}/images/technology/tecnology-04.jpg"
-                                                                class="img-responsive" alt="">
-                                                        </a>
-                                                    </div>
-                                                    <div class="post-title-author-details">
-                                                        <!-- post image -->
-                                                        <h5><a href="#">Microbus runs over 2
-                                                                pedestrians in Banani</a></h5>
-                                                        <div class="post-editor-date">
-                                                            <!-- post date -->
-                                                            <div class="post-date">
-                                                                <i class="pe-7s-clock"></i> Oct 6, 2016
-                                                            </div>
-                                                            <!-- post comment -->
-                                                            <div class="post-author-comment"><i class="pe-7s-comment"></i>
-                                                                13 </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-xs-6 col-md-6 col-sm-6 post-padding">
-                                                    <!-- post image -->
-                                                    <div class="post-thumb wow fadeIn" data-wow-duration="1s"
-                                                        data-wow-delay="0.4s">
-                                                        <a href="#">
-                                                            <img src="{{ asset('frontend') }}/images/technology/tecnology-05.jpg"
-                                                                class="img-responsive" alt="">
-                                                        </a>
-                                                    </div>
-                                                    <div class="post-title-author-details">
-                                                        <!-- post image -->
-                                                        <h5><a href="#">Microbus runs over 2
-                                                                pedestrians in Banani</a></h5>
-                                                        <div class="post-editor-date">
-                                                            <!-- post date -->
-                                                            <div class="post-date">
-                                                                <i class="pe-7s-clock"></i> Oct 6, 2016
-                                                            </div>
-                                                            <!-- post comment -->
-                                                            <div class="post-author-comment"><i class="pe-7s-comment"></i>
-                                                                13 </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                                @endforeach
+
                                             </div>
                                         </div>
                                     </div>
@@ -888,6 +670,7 @@
                         </div>
                         <!-- /.row -->
                     </section>
+
                 </div>
                 <!-- second content aside -->
                 <div class="col-md-4 col-sm-4 left-padding">
@@ -952,7 +735,7 @@
     </section>
     <!-- second content end -->
     <!-- Video News Area
-                                                ============================================ -->
+                                                                                        ============================================ -->
     <section class="video-post-inner">
         <div class="container-fluid">
             <div class="row">
@@ -1042,7 +825,7 @@
         </div>
     </section>
     <!-- Article Post
-                                                ============================================ -->
+                                                                                        ============================================ -->
     <section class="article-post-inner">
         <div class="container-fluid">
             <div class="row">
@@ -1051,117 +834,37 @@
                         <h3 class="category-headding ">Latest News</h3>
                         <div class="headding-border"></div>
                         <!--Post list-->
-                        <div class="post-style2 wow fadeIn" data-wow-duration="1s">
-                            <a href="#"><img src="{{ asset('frontend') }}/images/category/category-post-11.jpg"
-                                    alt=""></a>
-                            <div class="post-style2-detail">
-                                <h3><a href="#" title="">It uses a dictionary of over 200 Latin words,
-                                        combined with</a></h3>
-                                <div class="date">
-                                    <ul>
-                                        <li><img src="{{ asset('frontend') }}/images/comment-01.jpg"
-                                                class="img-responsive" alt="">
-                                        </li>
-                                        <li>By <a title="" href="#"><span>Naeem Khan</span></a> --</li>
-                                        <li><a title="" href="#">Oct 6, 2016</a> --</li>
-                                        <li><a title="" href="#"><span>275 Comments</span></a></li>
-                                    </ul>
+                        @foreach ($recent_news->take(10) as $recent_new)
+                            <div class="post-style2 wow fadeIn" data-wow-duration="1s">
+                                <a href="#"><img src="{{ asset($recent_new->image) }}" width="300px"
+                                        alt=""></a>
+                                <div class="post-style2-detail">
+                                    <h3><a href="#" title=""> {{ $recent_new->title }}</a></h3>
+                                    <div class="date">
+                                        <ul>
+                                            <li><img src="{{ asset('frontend') }}/images/comment-01.jpg"
+                                                    class="img-responsive" alt="">
+                                            </li>
+                                            <li>By <a title=""
+                                                    href="#"><span>{{ $recent_new->userCreator->name }}</span></a>
+                                                --</li>
+                                            <li><a title=""
+                                                    href="#">{{ $recent_new->created_at->format('M j, Y') }}</a> --
+                                            </li>
+                                            <li><a title=""
+                                                    href="#"><span>{{ $recent_new->category->name ?? null }}</span></a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <p>{{ strlen(strip_tags($recent_new->description)) > 50 ? substr(strip_tags($recent_new->description), 0, 50) . '...' : strip_tags($recent_new->description) }}
+                                        @if (strlen(strip_tags($recent_new->description)) > 50)
+                                            <a href="#">Read More</a>
+                                        @endif
+                                    </p>
                                 </div>
-                                <p>Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum
-                                    auctor, nisi elit consequat ipsum, nec sagittis sem nibh.</p>
-                                <button type="button" class="btn btn-style">Reade more</button>
                             </div>
-                        </div>
-                        <!--Post list-->
-                        <div class="post-style2 wow fadeIn" data-wow-duration="1s" data-wow-delay="0.1s">
-                            <a href="#"><img src="{{ asset('frontend') }}/images/category/category-post-12.jpg"
-                                    alt=""></a>
-                            <div class="post-style2-detail">
-                                <h3><a href="#" title="">Lorem Ipsum is simply dummy text of the
-                                        printing
-                                        .</a></h3>
-                                <div class="date">
-                                    <ul>
-                                        <li><img src="{{ asset('frontend') }}/images/comment-02.jpg"
-                                                class="img-responsive" alt="">
-                                        </li>
-                                        <li>By <a title="" href="#"><span>Naeem Khan</span></a> --</li>
-                                        <li><a title="" href="#">Oct 6, 2016</a> --</li>
-                                        <li><a title="" href="#"><span>275 Comments</span></a></li>
-                                    </ul>
-                                </div>
-                                <p>Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum
-                                    auctor, nisi elit consequat ipsum, nec sagittis sem nibh.</p>
-                                <button type="button" class="btn btn-style">Reade more</button>
-                            </div>
-                        </div>
-                        <!-- Post list -->
-                        <div class="post-style2 wow fadeIn" data-wow-duration="1s" data-wow-delay="0.2s">
-                            <a href="#"><img src="{{ asset('frontend') }}/images/category/category-post-13.jpg"
-                                    alt=""></a>
-                            <div class="post-style2-detail">
-                                <h3><a href="#" title="">If you are going to use a passage of Lorem
-                                        Ipsum
-                                        .</a></h3>
-                                <div class="date">
-                                    <ul>
-                                        <li><img src="{{ asset('frontend') }}/images/comment-01.jpg"
-                                                class="img-responsive" alt="">
-                                        </li>
-                                        <li>By <a title="" href="#"><span>Naeem Khan</span></a> --</li>
-                                        <li><a title="" href="#">Oct 6, 2016</a> --</li>
-                                        <li><a title="" href="#"><span>275 Comments</span></a></li>
-                                    </ul>
-                                </div>
-                                <p>Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum
-                                    auctor, nisi elit consequat ipsum, nec sagittis sem nibh.</p>
-                                <button type="button" class="btn btn-style">Reade more</button>
-                            </div>
-                        </div>
-                        <!-- Post list -->
-                        <div class="post-style2 wow fadeIn" data-wow-duration="1s" data-wow-delay="0.3s">
-                            <a href="#"><img src="{{ asset('frontend') }}/images/category/category-post-14.jpg"
-                                    alt=""></a>
-                            <div class="post-style2-detail">
-                                <h3><a href="#" title="">Check Out the Amazing Photos of Lauren
-                                        Conradâ€™s
-                                        Trip</a></h3>
-                                <div class="date">
-                                    <ul>
-                                        <li><img src="{{ asset('frontend') }}/images/comment-02.jpg"
-                                                class="img-responsive" alt="">
-                                        </li>
-                                        <li>By <a title="" href="#"><span>Naeem Khan</span></a> --</li>
-                                        <li><a title="" href="#">Oct 6, 2016</a> --</li>
-                                        <li><a title="" href="#"><span>275 Comments</span></a></li>
-                                    </ul>
-                                </div>
-                                <p>Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum
-                                    auctor, nisi elit consequat ipsum, nec sagittis sem nibh.</p>
-                                <button type="button" class="btn btn-style">Reade more</button>
-                            </div>
-                        </div>
-                        <!-- Post list -->
-                        <div class="post-style2 wow fadeIn" data-wow-duration="1s" data-wow-delay="0.4s">
-                            <a href="#"><img src="{{ asset('frontend') }}/images/category/category-post-15.jpg"
-                                    alt=""></a>
-                            <div class="post-style2-detail">
-                                <h3><a href="#" title="">Many desktop publishing packages and web
-                                        page.</a></h3>
-                                <div class="date">
-                                    <ul>
-                                        <li><img src="{{ asset('frontend') }}/images/comment-01.jpg"
-                                                class="img-responsive" alt=""></li>
-                                        <li>By <a title="" href="#"><span>Naeem Khan</span></a> --</li>
-                                        <li><a title="" href="#">Oct 6, 2016</a> --</li>
-                                        <li><a title="" href="#"><span>275 Comments</span></a></li>
-                                    </ul>
-                                </div>
-                                <p>Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum
-                                    auctor, nisi elit consequat ipsum, nec sagittis sem nibh.</p>
-                                <button type="button" class="btn btn-style">Reade more</button>
-                            </div>
-                        </div>
+                        @endforeach
+
                     </div>
                 </div>
                 <div class="col-sm-4 left-padding">
@@ -1264,7 +967,7 @@
         </div>
     </section>
     <!-- pagination
-                                                ============================================ -->
+                                                                                        ============================================ -->
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-12">
