@@ -1,14 +1,17 @@
+@php
+    $webSettings = App\Models\WebSettings::first();
+@endphp
 <footer>
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-3">
                 <div class="footer-box footer-logo-address">
                     <!-- address  -->
-                    <img src="{{ asset('frontend') }}/images/footer-logo.png" class="img-responsive" alt="">
+                    <img src="{{ asset($webSettings->logo) }}" class="img-responsive" alt="">
                     <address>
-                        14L.E Goulburn St, Sydney 2000NSW
-                        <br> Tell: 01922296392
-                        <br> Email: bdtask@gmail.com
+                        {!! $webSettings->address_1 !!}
+                        <br> Tell: 0{{ $webSettings->contact_1 }}
+                        <br> Email: {{ $webSettings->email_1 }}
                     </address>
                 </div>
                 <!-- /.address  -->
@@ -52,8 +55,8 @@
                     <div class="box-item wow fadeIn" data-wow-duration="1s">
                         <div class="img-thumb">
                             <a href="#" rel="bookmark"><img class="entry-thumb"
-                                    src="{{ asset('frontend') }}/images/popular_news_01.jpg" alt="" height="80"
-                                    width="100"></a>
+                                    src="{{ asset('frontend') }}/images/popular_news_01.jpg" alt=""
+                                    height="80" width="100"></a>
                         </div>
                         <div class="item-details">
                             <h6 class="sub-category-title bg-color-1">
@@ -74,8 +77,8 @@
                     <div class="box-item wow fadeIn" data-wow-duration="1s" data-wow-delay="0.1s">
                         <div class="img-thumb">
                             <a href="#" rel="bookmark"><img class="entry-thumb"
-                                    src="{{ asset('frontend') }}/images/popular_news_02.jpg" alt="" height="80"
-                                    width="100"></a>
+                                    src="{{ asset('frontend') }}/images/popular_news_02.jpg" alt=""
+                                    height="80" width="100"></a>
                         </div>
                         <div class="item-details">
                             <h6 class="sub-category-title bg-color-2">

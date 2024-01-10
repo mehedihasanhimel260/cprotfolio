@@ -54,22 +54,18 @@
                                 <td>{{ $item->name }}</td>
                                 <td>{{ $item->slug }}</td>
                                 <td class="text-center">
-                                    <a class="btn btn-sm btn-primary"
-                                        href="{{ route('category.edit', $item->id) }}">Edit</a>
-                                    <a href="#" class="btn btn-sm btn-primary" onclick="hit(event)">Delete </a>
 
-                                    <form id="delete-form" action="{{ route('category.destroy', $item->id) }}"
-                                        method="POST" class="d-none">
+                                    <form action="{{ route('category.destroy', $item->id) }}" method="POST">
                                         @method('DELETE')
                                         @csrf
+                                        <a class="btn btn-sm btn-primary"
+                                            href="{{ route('category.edit', $item->id) }}">Edit</a>
+                                        {{-- <button type="submit" class="btn btn-sm btn-primary">Delete </button> --}}
+
+
                                     </form>
 
-                                    <script>
-                                        function hit(event) {
-                                            event.preventDefault();
-                                            document.getElementById('delete-form').submit();
-                                        }
-                                    </script>
+
                                 </td>
                             </tr>
                         @endforeach

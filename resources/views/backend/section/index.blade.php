@@ -93,7 +93,7 @@
                                     <td class="text-center">
                                         <a class="btn btn-sm btn-primary"
                                             href="{{ route('section.edit', $sectionItem->id) }}">Edit</a>
-                                        <a href="#" class="btn btn-sm btn-primary" onclick="hit(event)">Delete </a>
+                                        {{-- <a href="#" class="btn btn-sm btn-primary" onclick="hit(event)">Delete </a> --}}
 
                                         <form id="delete-form" action="{{ route('section.destroy', $sectionItem->id) }}"
                                             method="POST" class="d-none">

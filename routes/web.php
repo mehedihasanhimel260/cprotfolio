@@ -7,6 +7,7 @@ use App\Http\Controllers\backend\PostController;
 use App\Http\Controllers\backend\SectionController;
 use App\Http\Controllers\backend\SubCategoryController;
 use App\Http\Controllers\backend\WebSettingsController;
+use App\Http\Controllers\Frontend\HomePageController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -24,9 +25,34 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('frontend.home.index');
 });
+    /*------------------------------------------
+--------------------------------------------
+All gest Routes List
+--------------------------------------------
+--------------------------------------------*/
+
+// Route::get('/', function () {
+//     return view('frontend.home.index');
+// });
+Route::get('/', [HomePageController::class,'index'])->name('homepage');
+
+
+
+
 
 Auth::routes();
 Route::middleware(['auth'])->group(function () {
+
+
+
+
+
+
+    /*------------------------------------------
+--------------------------------------------
+All Admin Routes List
+--------------------------------------------
+--------------------------------------------*/
     Route::middleware(['auth', 'user-access:admin'])->group(function () {
         Route::get('/admin/home', [HomeController::class, 'adminHome'])->name('admin.home');
         Route::resource('/admin/category', CategoryController::class);
@@ -39,7 +65,7 @@ Route::middleware(['auth'])->group(function () {
 
     /*------------------------------------------
 --------------------------------------------
-All Admin Routes List
+All User Routes List
 --------------------------------------------
 --------------------------------------------*/
 

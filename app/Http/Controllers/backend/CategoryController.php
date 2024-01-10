@@ -5,7 +5,6 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-use Illuminate\Support\Facades\File;
 class CategoryController extends Controller
 {
     /**
@@ -75,7 +74,6 @@ class CategoryController extends Controller
             $destinationPath = 'upload/';
             $newImageName = date('YmdHis') . '.' . $image->getClientOriginalExtension();
             $image->move($destinationPath, $newImageName);
-
             $category->image = $destinationPath . $newImageName;
         }
 
@@ -94,9 +92,7 @@ class CategoryController extends Controller
     {
         $category = Category::find($id);
 
-        if (File::exists($category->image)) {
-            File::delete($category->image);
-        }
+        @unlink($category->image);
 
         $category->delete();
 

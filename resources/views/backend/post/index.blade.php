@@ -57,8 +57,15 @@
                 <h6 class="mb-0">All Post</h6>
                 {{-- <a href="">Show All</a> --}}
             </div>
+
+            <style>
+                #example_filter {
+                    display: none;
+                }
+            </style>
             <div class="table-responsive">
-                <table class="table text-start align-middle table-bordered table-hover mb-0">
+                <table class="table text-start align-middle table-bordered table-hover mb-0 table-striped" id="example"
+                    style="width:100%">
                     <thead>
                         <tr class="text-white">
                             <th scope="col"><input class="form-check-input" type="checkbox"></th>
@@ -117,5 +124,8 @@
                 preview.style.height = "150px";
             }
         }
+
+
+        new DataTable('#example');
     </script>
 @endsection

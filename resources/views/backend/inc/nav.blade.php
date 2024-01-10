@@ -9,12 +9,6 @@
         <input class="form-control bg-dark border-0" type="search" placeholder="Search">
     </form> --}}
     <div class="navbar-nav align-items-center ms-auto">
-        <div class="nav-item ">
-            <a href="{{ url('/') }}" class="btn btn-primary m-2">
-                <i class="fa fa-home"></i>
-                <span class="d-none d-lg-inline-flex">Front Site</span>
-            </a>
-        </div>
         <div class="nav-item dropdown">
             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
                 <img class="rounded-circle me-lg-2" src="{{ asset('backend') }}/img/user.jpg" alt=""

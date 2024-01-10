@@ -1,3 +1,6 @@
+@php
+    $webSettings = App\Models\WebSettings::first();
+@endphp
 <header>
     <!-- Mobile Menu Start -->
     <div class="mobile-menu-area navbar-fixed-top hidden-sm hidden-md hidden-lg">
@@ -58,7 +61,7 @@
                                 </ul>
                                 <!-- /.nav-third-level -->
                             </li>
-                            <li><a href="login%26registration.html">Login & Registration</a></li>
+                            <li><a href="{{ route('login') }}">Login & Registration</a></li>
                         </ul>
                         <!-- /.nav-second-level -->
                     </li>
@@ -79,9 +82,9 @@
                     <li>
                         <div class="social">
                             <ul>
-                                <li><a href="#" class="facebook"><i class="fa  fa-facebook"></i> </a></li>
-                                <li><a href="#" class="twitter"><i class="fa  fa-twitter"></i></a></li>
-                                <li><a href="#" class="google"><i class="fa  fa-google-plus"></i></a></li>
+                                <li><a href="{{ $webSettings->social_link_2 }}" class="facebook"><i class="fa  fa-facebook"></i> </a></li>
+                                <li><a href="{{ $webSettings->social_link_1 }}" class="twitter"><i class="fa  fa-twitter"></i></a></li>
+                                <li><a href="{{ $webSettings->social_link_3 }}" class="google"><i class="fa  fa-google-plus"></i></a></li>
                             </ul>
                         </div>
                     </li>
@@ -91,19 +94,24 @@
         <div class="container-fluid">
             <div class="top_header_icon">
                 <span class="top_header_icon_wrap">
-                    <a target="_blank" href="#" title="Twitter"><i class="fa fa-twitter"></i></a>
+                    <a target="_blank" href="{{ $webSettings->social_link_1 }}" title="Twitter"><i
+                            class="fa fa-twitter"></i></a>
                 </span>
                 <span class="top_header_icon_wrap">
-                    <a target="_blank" href="#" title="Facebook"><i class="fa fa-facebook"></i></a>
+                    <a target="_blank" href="{{ $webSettings->social_link_2 }}" title="Facebook"><i
+                            class="fa fa-facebook"></i></a>
                 </span>
                 <span class="top_header_icon_wrap">
-                    <a target="_blank" href="#" title="Google"><i class="fa fa-google-plus"></i></a>
+                    <a target="_blank" href="{{ $webSettings->social_link_3 }}" title="Google"><i
+                            class="fa fa-google-plus"></i></a>
                 </span>
                 <span class="top_header_icon_wrap">
-                    <a target="_blank" href="#" title="Vimeo"><i class="fa fa-vimeo"></i></a>
+                    <a target="_blank" href="{{ $webSettings->social_link_4 }}" title="Vimeo"><i
+                            class="fa fa-vimeo"></i></a>
                 </span>
                 <span class="top_header_icon_wrap">
-                    <a target="_blank" href="#" title="Pintereset"><i class="fa fa-pinterest-p"></i></a>
+                    <a target="_blank" href="{{ $webSettings->social_link_5 }}" title="Pintereset"><i
+                            class="fa fa-pinterest-p"></i></a>
                 </span>
             </div>
             <div id="showLeft" class="nav-icon">
@@ -133,7 +141,8 @@
                                             {{ __('Logout') }}
                                         </a></li>
 
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                        class="d-none">
                                         @csrf
                                     </form>
                                 @else
@@ -209,19 +218,23 @@
                 <div class="col-sm-12 col-md-2">
                     <div class="top_header_icon">
                         <span class="top_header_icon_wrap">
-                            <a target="_blank" href="#" title="Twitter"><i class="fa fa-twitter"></i></a>
+                            <a target="_blank" href="{{ $webSettings->social_link_1 }}" title="Twitter"><i
+                                    class="fa fa-twitter"></i></a>
                         </span>
                         <span class="top_header_icon_wrap">
-                            <a target="_blank" href="#" title="Facebook"><i class="fa fa-facebook"></i></a>
+                            <a target="_blank" href="{{ $webSettings->social_link_2 }}" title="Facebook"><i
+                                    class="fa fa-facebook"></i></a>
                         </span>
                         <span class="top_header_icon_wrap">
-                            <a target="_blank" href="#" title="Google"><i class="fa fa-google-plus"></i></a>
+                            <a target="_blank" href="{{ $webSettings->social_link_3 }}" title="Google"><i
+                                    class="fa fa-google-plus"></i></a>
                         </span>
                         <span class="top_header_icon_wrap">
-                            <a target="_blank" href="#" title="Vimeo"><i class="fa fa-vimeo"></i></a>
+                            <a target="_blank" href="{{ $webSettings->social_link_4 }}" title="Vimeo"><i
+                                    class="fa fa-vimeo"></i></a>
                         </span>
                         <span class="top_header_icon_wrap">
-                            <a target="_blank" href="#" title="Pintereset"><i
+                            <a target="_blank" href="{{ $webSettings->social_link_5 }}" title="Pintereset"><i
                                     class="fa fa-pinterest-p"></i></a>
                         </span>
                     </div>
@@ -236,7 +249,7 @@
                     <div class="header-logo">
                         <!-- logo -->
                         <a href="{{ url('/') }}">
-                            <img class="td-retina-data img-responsive" src="{{ asset('frontend') }}/images/logo.png"
+                            <img class="td-retina-data img-responsive" src="{{ asset($webSettings->logo) }}"
                                 alt="">
                         </a>
                     </div>
